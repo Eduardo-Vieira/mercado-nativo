@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">Mercado</string>
+
+    <!-- Title fragment-->
+    <string name="shopping_title_replace">replace</string>
+    <string name="shopping_title">Mercado</string>
+    <string name="shoppingadd_title">Novo Mercado</string>
+    <string name="shoppingedit_title">Editar Mercado</string>
+    <string name="shoppingcart_title">Lista de Compras</string>
+    <string name="shoppingcart_add_title">Novo Item</string>
+    <string name="shoppingcart_edit_title">Editar Item</string>
+
+    <!--String of shopping row-->
+    <string name="shopping_row_registro">Registro:</string>
+    <string name="shopping_row_data">Data:</string>
+    <string name="shopping_row_nota">Nota:</string>
+    <string name="shopping_row_total">Total:</string>
+    <string name="shopping_row_replace">replace</string>
+    <string name="shopping_row_btn_remover">Remover</string>
+    <string name="shopping_row_btn_editar">Editar</string>
+    <string name="shopping_row_btn_Itens">Itens</string>
+
+
+    <!-- String of cart-->
+    <string name="shopping_cart_row_replace">replace</string>
+    <string name="shopping_cart_x">X</string>
+    <string name="shopping_cart_remover">Remover</string>
+    <string name="shopping_cart_editar">Editar</string>
+
+    <!-- String of cart from's-->
+    <string name="shopping_cart_form_description">Descrição</string>
+    <string name="shopping_cart_form_unit">Quantidade</string>
+    <string name="shopping_cart_form_price">Preço</string>
+    <string name="shopping_cart_form_sum">Total:</string>
+    <string name="shopping_cart_form_replace">Replace</string>
+    <string name="shopping_cart_form_save">Salvar</string>
+
+</resources>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools" android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_appActionBar"
+        android:id="@+id/appActionBar" android:background="@color/color_333333">
+
+    <ImageView
+            android:layout_width="35dp"
+            android:layout_height="33dp" app:srcCompat="@drawable/ic_keyboard_arrow_left_black_24dp"
+            android:id="@+id/btnPopBackStack" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="8dp" android:layout_marginStart="8dp" android:layout_marginBottom="8dp"
+            android:visibility="gone"/>
+    <TextView
+            android:text="@string/shopping_title_replace"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/barTitle" app:layout_constraintStart_toEndOf="@+id/btnPopBackStack"
+            android:layout_marginStart="16dp"
+            android:textSize="24sp" app:layout_constraintTop_toTopOf="@+id/btnPopBackStack"
+            app:layout_constraintBottom_toBottomOf="@+id/btnPopBackStack" android:textColor="@color/color_f7f7f7"
+            android:textStyle="bold" android:fontFamily="sans-serif"/>
+    <EditText
+            android:layout_width="0dp"
+            android:layout_height="58dp"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/txtSearch" android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/btnSearch"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btnPopBackStack"
+            android:layout_marginStart="8dp" android:hint="Search"
+            app:layout_constraintBottom_toTopOf="@+id/view2" android:visibility="gone"
+            android:textColor="@color/color_f7f7f7"/>
+    <ImageView
+            android:layout_width="35dp"
+            android:layout_height="33dp" app:srcCompat="@drawable/ic_search_black_24dp"
+            android:id="@+id/btnSearch"
+            android:visibility="gone"
+            app:layout_constraintTop_toTopOf="@+id/barTitle" app:layout_constraintBottom_toBottomOf="@+id/barTitle"
+            app:layout_constraintEnd_toStartOf="@+id/btnClosed" android:layout_marginEnd="8dp"/>
+    <ImageView
+            android:layout_width="35dp"
+            android:layout_height="33dp" app:srcCompat="@drawable/ic_close_black_24dp"
+            android:id="@+id/btnClosed"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintTop_toTopOf="@+id/btnSearch" app:layout_constraintBottom_toBottomOf="@+id/btnSearch"
+            android:visibility="gone"/>
+    <View
+            android:layout_width="wrap_content"
+            android:layout_height="3dp" android:id="@+id/view2" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/color_84bc01"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintBottom_toBottomOf="parent"
+    />
+</androidx.constraintlayout.widget.ConstraintLayout>
