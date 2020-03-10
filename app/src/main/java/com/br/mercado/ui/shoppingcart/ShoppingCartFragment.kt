@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.br.mercado.App
 import com.br.mercado.R
 import com.br.mercado.base.BaseFragment
+import com.br.mercado.data.model.Cart
 import com.br.mercado.ui.adapters.ShoppingCartAdapter
 import com.br.mercado.ui.itemtouchhelpcallback.CartItemTouchHelperCallback
 import com.br.mercado.utils.ARG_ID
@@ -22,6 +23,8 @@ import java.text.NumberFormat
 class ShoppingCartFragment : BaseFragment() {
 
     private var id: Long = 0
+
+    private lateinit var adapter:ShoppingCartAdapter
 
     companion object {
         @JvmStatic
@@ -57,6 +60,8 @@ class ShoppingCartFragment : BaseFragment() {
 
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(ShoppingCartViewModel::class.java)
 
+        configRecycler()
+
         initObserveShoppingCart()
 
         btnAddItem.setOnClickListener {
@@ -79,6 +84,21 @@ class ShoppingCartFragment : BaseFragment() {
         refresh()
     }
 
+    private fun configRecycler(){
+        adapter = ShoppingCartAdapter { itemCart ->
+            // Edit
+            pushFragment(ShoppingCartEditFragment.newInstance(itemCart.id), "ShoppingCartEditFragment")
+        }
+
+        RecyclerViewShoppingCart.layoutManager = LinearLayoutManager(this.context)
+        RecyclerViewShoppingCart.adapter = this.adapter
+        val itemTouchHelper = ItemTouchHelper(CartItemTouchHelperCallback { position ->
+            // Remove
+            viewModel.deleteItemCart(adapter.getItemId(position))
+            refresh()
+        })
+        itemTouchHelper.attachToRecyclerView(RecyclerViewShoppingCart)
+    }
     private fun refresh() {
         loader.visibility = View.VISIBLE
         viewModel.getCart(id)
@@ -89,29 +109,20 @@ class ShoppingCartFragment : BaseFragment() {
         viewModel.cart?.observe(this, Observer {
             loader.visibility = View.GONE
             if(it.isNotEmpty()){
-                RecyclerViewShoppingCart.apply {
-                    layoutManager = LinearLayoutManager(this.context)
-                    adapter = ShoppingCartAdapter(it) { itemCart ->
-                        // Edit
-                        pushFragment(ShoppingCartEditFragment.newInstance(itemCart.id), "ShoppingCartEditFragment")
-                    }
-                }
-                val itemTouchHelper = ItemTouchHelper(CartItemTouchHelperCallback(it) { idReg ->
-                    // Remove
-                    viewModel.deleteItemCart(idReg)
-                    refresh()
-                })
-                itemTouchHelper.attachToRecyclerView(RecyclerViewShoppingCart)
-
-                val currencyFormat = NumberFormat.getCurrencyInstance()
-                val total = viewModel.sumTotal(it)
-                viewModel.updateShoppingItem(id,total)
-                txtTotal.text = currencyFormat.format(total)
+                adapter.update(it)
+                sumTotal(it)
             }
         })
 
         viewModel.getCart(id)
 
+    }
+
+    private fun sumTotal(it: List<Cart>) {
+        val currencyFormat = NumberFormat.getCurrencyInstance()
+        val total = viewModel.sumTotal(it)
+        viewModel.updateShoppingItem(id, total)
+        txtTotal.text = currencyFormat.format(total)
     }
 
 }

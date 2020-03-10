@@ -12,7 +12,7 @@ import com.br.mercado.utils.utils
 import kotlinx.android.synthetic.main.shopping_cart_row.view.*
 import java.text.NumberFormat
 
-class ShoppingCartAdapter(private val cart:List<Cart>,
+class ShoppingCartAdapter(private var cart:List<Cart> = arrayListOf(),
                           private val onEditClickListener: (itemCart: Cart) -> Unit): RecyclerView.Adapter<ShoppingCartAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -32,6 +32,15 @@ class ShoppingCartAdapter(private val cart:List<Cart>,
         holder.itemView.setOnClickListener{
             onEditClickListener(cart[position])
         }
+    }
+
+    fun update(cart:List<Cart>){
+        this.cart = cart
+        notifyDataSetChanged()
+    }
+
+    override fun getItemId(position: Int): Long {
+        return this.cart.get(position).id
     }
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {

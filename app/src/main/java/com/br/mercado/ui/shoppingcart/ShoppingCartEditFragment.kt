@@ -1,7 +1,9 @@
 package com.br.mercado.ui.shoppingcart
 
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
@@ -14,7 +16,15 @@ import com.br.mercado.data.model.Cart
 import com.br.mercado.utils.ARG_ID
 import com.br.mercado.utils.utils
 import kotlinx.android.synthetic.main.app_action_bar.*
+import kotlinx.android.synthetic.main.shopping_cart_add_fragment.*
 import kotlinx.android.synthetic.main.shopping_cart_edit_fragment.*
+import kotlinx.android.synthetic.main.shopping_cart_edit_fragment.btnAdd
+import kotlinx.android.synthetic.main.shopping_cart_edit_fragment.btnRemove
+import kotlinx.android.synthetic.main.shopping_cart_edit_fragment.btnSave
+import kotlinx.android.synthetic.main.shopping_cart_edit_fragment.totalCalc
+import kotlinx.android.synthetic.main.shopping_cart_edit_fragment.txtDescription
+import kotlinx.android.synthetic.main.shopping_cart_edit_fragment.txtPrice
+import kotlinx.android.synthetic.main.shopping_cart_edit_fragment.txtQty
 import java.text.NumberFormat
 import javax.inject.Inject
 
@@ -22,6 +32,9 @@ class ShoppingCartEditFragment: BaseFragment() {
 
     private var id: Long = 0
     private lateinit var itemCart:Cart
+    private var quant:Double = 0.0
+    private lateinit var mHandler: Handler
+    private lateinit var mRunnable:Runnable
 
     companion object {
         @JvmStatic
@@ -75,6 +88,55 @@ class ShoppingCartEditFragment: BaseFragment() {
 
         txtQty.addTextChangedListener {
             calcTotal()
+        }
+
+        mHandler = Handler()
+
+        btnAdd.setOnTouchListener(object : View.OnTouchListener {
+            override fun onTouch(v: View?, event: MotionEvent?): Boolean {
+                when (event?.action) {
+                    MotionEvent.ACTION_DOWN -> runnable(true)
+                    MotionEvent.ACTION_UP -> mHandler.removeCallbacks(mRunnable)
+                }
+                return false
+            }
+        })
+
+        btnRemove.setOnTouchListener(object : View.OnTouchListener {
+            override fun onTouch(v: View?, event: MotionEvent?): Boolean {
+                when (event?.action) {
+                    MotionEvent.ACTION_DOWN -> runnable(false)
+                    MotionEvent.ACTION_UP -> mHandler.removeCallbacks(mRunnable)
+                }
+                return false
+            }
+        })
+    }
+
+    private fun runnable(type:Boolean){
+        mRunnable = Runnable {
+            if(type) addQuant() else removeQuant()
+            mHandler.postDelayed(
+                mRunnable,
+                500
+            )
+        }
+        mHandler.postDelayed(
+            mRunnable,
+            500
+        )
+        if(type) addQuant() else removeQuant()
+    }
+
+    private fun addQuant(){
+        quant += 1
+        if(quant > 0) txtQty.setText(quant.toString())
+    }
+
+    private fun removeQuant(){
+        if(quant > 0) {
+            quant -= 1
+            txtQty.setText(quant.toString())
         }
     }
 

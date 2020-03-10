@@ -1,7 +1,9 @@
 package com.br.mercado.ui.shoppingcart
 
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
@@ -17,6 +19,9 @@ import java.text.NumberFormat
 class ShoppingCartAddFragment: BaseFragment() {
 
     private var id: Long = 0
+    private var quant:Double = 0.0
+    private lateinit var mHandler: Handler
+    private lateinit var mRunnable:Runnable
 
     companion object {
         @JvmStatic
@@ -53,12 +58,34 @@ class ShoppingCartAddFragment: BaseFragment() {
 
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(ShoppingCartViewModel::class.java)
 
+        mHandler = Handler()
+
         btnSave.setOnClickListener {
             var data = Cart(0,id, txtDescription.text.toString(), txtQty.text.toString().toFloat(), txtPrice.text.toString().toFloat())
             viewModel.insertCart(data)
             hideKeyboard(this.context!!) // hide keyboard
             popFragment() // back fragment
         }
+
+        btnAdd.setOnTouchListener(object : View.OnTouchListener {
+            override fun onTouch(v: View?, event: MotionEvent?): Boolean {
+                when (event?.action) {
+                    MotionEvent.ACTION_DOWN -> runnable(true)
+                    MotionEvent.ACTION_UP -> mHandler.removeCallbacks(mRunnable)
+                }
+                return false
+            }
+        })
+
+        btnRemove.setOnTouchListener(object : View.OnTouchListener {
+            override fun onTouch(v: View?, event: MotionEvent?): Boolean {
+                when (event?.action) {
+                    MotionEvent.ACTION_DOWN -> runnable(false)
+                    MotionEvent.ACTION_UP -> mHandler.removeCallbacks(mRunnable)
+                }
+                return false
+            }
+        })
 
         totalCalc.text = "R$0,00"
 
@@ -70,6 +97,33 @@ class ShoppingCartAddFragment: BaseFragment() {
             calcTotal()
         }
 
+    }
+
+    private fun runnable(type:Boolean){
+        mRunnable = Runnable {
+           if(type) addQuant() else removeQuant()
+            mHandler.postDelayed(
+                mRunnable,
+                500
+            )
+        }
+        mHandler.postDelayed(
+            mRunnable,
+            500
+        )
+        if(type) addQuant() else removeQuant()
+    }
+
+    private fun addQuant(){
+        quant += 1
+        if(quant > 0) txtQty.setText(quant.toString())
+    }
+
+    private fun removeQuant(){
+        if(quant > 0) {
+            quant -= 1
+            txtQty.setText(quant.toString())
+        }
     }
 
     private fun calcTotal(){
