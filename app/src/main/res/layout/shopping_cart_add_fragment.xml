@@ -32,11 +32,10 @@
                 android:id="@+id/unitInputLayout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                app:layout_constraintEnd_toStartOf="@+id/btnRemove"
-                app:layout_constraintStart_toEndOf="@+id/btnAdd"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toStartOf="@+id/btnAdd"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/descriptionInputLayout">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -86,9 +85,9 @@
 
             <Button
                 android:id="@+id/btnRemove"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/colorPrimary"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:background="@drawable/ic_background_button_circle"
                 android:text="-"
                 android:textColor="@android:color/white"
                 android:textSize="24sp"
@@ -98,15 +97,16 @@
 
             <Button
                 android:id="@+id/btnAdd"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/colorPrimary"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/ic_background_button_circle"
                 android:text="+"
                 android:textColor="@android:color/white"
                 android:textSize="24sp"
-                app:layout_constraintBottom_toBottomOf="@+id/unitInputLayout"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/unitInputLayout" />
+                app:layout_constraintBottom_toBottomOf="@+id/btnRemove"
+                app:layout_constraintEnd_toStartOf="@+id/btnRemove"
+                app:layout_constraintTop_toTopOf="@+id/btnRemove" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </FrameLayout>
