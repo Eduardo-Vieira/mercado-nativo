@@ -45,7 +45,7 @@ class ShoppingFragment : BaseFragment() {
         initObserveShopping()
 
         floatingActionButton.setOnClickListener {
-            pushFragment(ShoppingAddFragment.newInstance(),"ShoppingAddFragment")
+            pushFragment(ShoppingAddFragment.newInstance())
         }
 
     }
@@ -66,14 +66,14 @@ class ShoppingFragment : BaseFragment() {
                     layoutManager = LinearLayoutManager(this.context)
                     adapter = ShoppingAdapter(it, { idReg ->
                         // Push Fragment
-                        pushFragment(ShoppingCartFragment.newInstance(idReg), "ShoppingCardFragment")
+                        pushFragment(ShoppingCartFragment.newInstance(idReg))
                     }, {idReg ->
                         // Remove
                         viewModel.deleteItemShopping(idReg)
                         refresh()
                     }, { itemShopping ->
                         // Edit
-                        pushFragment(ShoppingEditFragment.newInstance(itemShopping.id), "ShoppingEditFragment")
+                        pushFragment(ShoppingEditFragment.newInstance(itemShopping.id))
                     })
                 }
             }

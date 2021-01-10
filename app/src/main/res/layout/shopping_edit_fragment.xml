@@ -8,41 +8,44 @@
         tools:context=".ui.shopping.ShoppingEditFragment"
         android:background="@android:color/white">
 
-    <include android:layout_width="wrap_content"
-             layout="@layout/app_action_bar" app:layout_constraintTop_toTopOf="parent"
-             app:layout_constraintStart_toEndOf="@+id/labelDescriptionNote"
-             app:layout_constraintEnd_toEndOf="parent" android:id="@+id/appActionBar"
-    />
     <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" android:padding="16dp"
-            android:layout_marginTop="@dimen/height_appActionBar">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
         <TextView
-                android:text="Nota (Nome, Tipo e Categoria):"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content" android:id="@+id/labelDescriptionNote"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" android:textStyle="bold"
-                app:layout_constraintTop_toTopOf="parent" android:textColor="@color/color_7f8c8d"/>
+            android:id="@+id/labelDescriptionNote"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Nota (Nome, Tipo e Categoria):"
+            android:textColor="@color/color_1A1A1A"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <EditText
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:ems="10"
-                android:id="@+id/inputDescriptionNote"
-                app:layout_constraintTop_toBottomOf="@+id/labelDescriptionNote"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                android:textColor="@color/color_7f8c8d" android:imeOptions="actionDone"/>
+            android:id="@+id/inputDescriptionNote"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:imeOptions="actionDone"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/labelDescriptionNote" />
+
         <Button
-                android:text="Salvar"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/btnSave" app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="32dp"
-                app:layout_constraintTop_toBottomOf="@+id/inputDescriptionNote"
-                android:background="@color/colorPrimary" android:textColor="@android:color/white"
-                android:imeOptions="actionDone|actionSend"/>
+            android:id="@+id/btnSave"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:background="@color/colorAccent"
+            android:imeOptions="actionDone|actionSend"
+            android:text="Salvar"
+            android:textColor="@android:color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/inputDescriptionNote" />
     </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>

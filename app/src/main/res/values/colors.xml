@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#e74c3c</color>
+    <color name="colorPrimary">#FFFFFF</color>
     <color name="colorPrimaryDark">#e74c3c</color>
     <color name="colorPrimaryLight">#7F8C8D</color>
-    <color name="colorAccent">#f1c40f</color>
+    <color name="colorAccent">#FF6500</color>
 
     <color name="lineItem">#cfd8dc</color>
     <color name="color_84bc01">#84bc01</color>
@@ -15,4 +15,8 @@
 
     <color name="color_7f8c8d">#7F8C8D</color>
     <color name="color_000000">#000000</color>
+
+    <color name="color_1A1A1A">#1A1A1A</color>
+    <color name="color_016450">#016450</color>
+    <color name="color_F1F1F1">#F1F1F1</color>
 </resources>

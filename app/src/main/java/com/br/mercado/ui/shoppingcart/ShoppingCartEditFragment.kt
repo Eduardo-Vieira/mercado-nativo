@@ -15,17 +15,7 @@ import com.br.mercado.base.BaseFragment
 import com.br.mercado.data.model.Cart
 import com.br.mercado.utils.ARG_ID
 import com.br.mercado.utils.utils
-import kotlinx.android.synthetic.main.app_action_bar.*
-import kotlinx.android.synthetic.main.shopping_cart_add_fragment.*
 import kotlinx.android.synthetic.main.shopping_cart_edit_fragment.*
-import kotlinx.android.synthetic.main.shopping_cart_edit_fragment.btnAdd
-import kotlinx.android.synthetic.main.shopping_cart_edit_fragment.btnRemove
-import kotlinx.android.synthetic.main.shopping_cart_edit_fragment.btnSave
-import kotlinx.android.synthetic.main.shopping_cart_edit_fragment.totalCalc
-import kotlinx.android.synthetic.main.shopping_cart_edit_fragment.txtDescription
-import kotlinx.android.synthetic.main.shopping_cart_edit_fragment.txtPrice
-import kotlinx.android.synthetic.main.shopping_cart_edit_fragment.txtQty
-import java.text.NumberFormat
 import javax.inject.Inject
 
 class ShoppingCartEditFragment: BaseFragment() {
@@ -141,7 +131,7 @@ class ShoppingCartEditFragment: BaseFragment() {
     }
 
     private fun initObserveEditCart(){
-        viewModel.itemCart?.observe(this, Observer {
+        viewModel.itemCart.observe(this, Observer {
             itemCart = it
             txtDescription.setText(it.description)
             txtQty.setText(it.qty.toString())

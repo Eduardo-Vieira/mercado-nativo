@@ -1,23 +1,22 @@
 package com.br.mercado.base
 
-import androidx.fragment.app.Fragment
-import com.br.mercado.R
 import android.app.Activity
 import android.content.Context
-import android.view.View
 import android.view.inputmethod.InputMethodManager
-import kotlinx.android.synthetic.main.app_action_bar.*
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import com.br.mercado.R
 
 open class BaseFragment : Fragment() {
 
-    fun pushFragment(fragment: Fragment, tag:String){
-        activity!!.supportFragmentManager
-            .beginTransaction()
-            .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right,
+    fun pushFragment(fragment: Fragment){
+        activity?.supportFragmentManager
+            ?.beginTransaction()
+            ?.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right,
                 R.anim.slide_in_left, R.anim.slide_out_right)
-            .replace(R.id.fragmentLayouts, fragment , tag)
-            .addToBackStack(null)
-            .commit()
+            ?.replace(R.id.fragmentLayouts, fragment , fragment.tag)
+            ?.addToBackStack(null)
+            ?.commit()
     }
 
     fun popFragment(){
@@ -35,29 +34,12 @@ open class BaseFragment : Fragment() {
         inputManager.hideSoftInputFromWindow(v.windowToken, 0)
     }
 
-    fun setAppActionBar(id:Int, popBackStack: Boolean = false, searchButton: Boolean = false){
-        // Set appActionBar
-        barTitle.text = resources.getString(id)
-        btnPopBackStack.visibility = if(popBackStack) View.VISIBLE else View.GONE
-        btnSearch.visibility = if(searchButton) View.VISIBLE else View.GONE
-        // PopBackStack
-        btnPopBackStack.setOnClickListener {
-            this.popFragment()
-        }
-        // Search
-        btnSearch.setOnClickListener {
-            txtSearch.visibility = View.VISIBLE
-            barTitle.visibility = View.GONE
-            btnSearch.visibility = View.GONE
-            btnClosed.visibility =View.VISIBLE
-        }
-        // Close
-        btnClosed.setOnClickListener {
-            txtSearch.visibility = View.GONE
-            txtSearch.setText("")
-            barTitle.visibility = View.VISIBLE
-            btnSearch.visibility = View.VISIBLE
-            btnClosed.visibility =View.GONE
-        }
+    fun setAppActionBar(id:Int, popBackStack: Boolean = false){
+        val supportActionBar = (activity as AppCompatActivity).supportActionBar
+
+        supportActionBar?.title = resources.getString(id)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_keyboard_arrow_left_black_24dp)
+        supportActionBar?.setDisplayHomeAsUpEnabled(popBackStack)
+        supportActionBar?.setDisplayShowHomeEnabled(popBackStack)
     }
 }

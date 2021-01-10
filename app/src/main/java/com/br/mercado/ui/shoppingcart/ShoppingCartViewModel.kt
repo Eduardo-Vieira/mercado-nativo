@@ -24,7 +24,7 @@ class ShoppingCartViewModel @Inject constructor(private val repository: Shopping
 
     fun getCartRow(id: Long){
         repository.getCartRow(id, rowShopping = {
-            itemCart?.postValue(it)
+            itemCart.postValue(it)
         })
     }
 
@@ -47,7 +47,7 @@ class ShoppingCartViewModel @Inject constructor(private val repository: Shopping
     fun sumTotal(data:List<Cart>):Float {
         var sum:Float = 0F
         for (item in data){
-            sum = sum + (item.price * item.qty)
+            sum += (item.price * item.qty)
         }
         return sum
     }

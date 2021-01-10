@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.shopping.ShoppingFragment" android:background="@color/lineItem">
-    <include android:layout_width="match_parent" layout="@layout/app_action_bar" android:id="@+id/appActionBar"/>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_F1F1F1"
+    tools:context=".ui.shopping.ShoppingFragment">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"
@@ -21,9 +21,13 @@
         app:backgroundTint="@color/colorAccent"
         app:elevation="5dp"
         app:fabSize="auto" />
+
     <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" android:id="@+id/RecyclerViewShopping"
-            tools:listitem="@layout/shopping_row" android:layout_marginTop="@dimen/height_appActionBar">
-    </androidx.recyclerview.widget.RecyclerView>
+        android:id="@+id/RecyclerViewShopping"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        tools:listitem="@layout/shopping_row"></androidx.recyclerview.widget.RecyclerView>
 </FrameLayout>
