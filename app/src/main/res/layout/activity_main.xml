@@ -12,9 +12,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
+        android:elevation="2dp"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
-        android:title="@string/app_name" />
+        android:title="@string/app_name"
+        app:contentInsetStartWithNavigation="16dp"
+        app:logo="@drawable/ic_shop32"
+        app:titleTextColor="@color/color_1A1A1A" />
 
     <FrameLayout
         android:layout_width="match_parent"

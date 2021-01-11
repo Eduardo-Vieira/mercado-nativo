@@ -61,7 +61,9 @@ class ShoppingCartAddFragment: BaseFragment() {
         mHandler = Handler()
 
         btnSave.setOnClickListener {
-            var data = Cart(0,id, txtDescription.text.toString(), txtQty.text.toString().toFloat(), txtPrice.text.toString().toFloat())
+            val vTxtQty = if(txtQty.text.toString().isNotEmpty()) txtQty.text.toString().toFloat() else 0F
+            val vTxtPrice = if(txtPrice.text.toString().isNotEmpty()) txtPrice.text.toString().toFloat() else 0F
+            val data = Cart(0,id, txtDescription.text.toString(), vTxtQty, vTxtPrice)
             viewModel.insertCart(data)
             hideKeyboard(this.context!!) // hide keyboard
             popFragment() // back fragment

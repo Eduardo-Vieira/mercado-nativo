@@ -36,10 +36,11 @@ open class BaseFragment : Fragment() {
 
     fun setAppActionBar(id:Int, popBackStack: Boolean = false){
         val supportActionBar = (activity as AppCompatActivity).supportActionBar
-
-        supportActionBar?.title = resources.getString(id)
-        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_keyboard_arrow_left_black_24dp)
-        supportActionBar?.setDisplayHomeAsUpEnabled(popBackStack)
-        supportActionBar?.setDisplayShowHomeEnabled(popBackStack)
+        supportActionBar?.apply {
+            title = resources.getString(id)
+            setHomeAsUpIndicator(R.drawable.ic_keyboard_arrow_left_black_24dp)
+            setDisplayHomeAsUpEnabled(popBackStack)
+            setDisplayShowHomeEnabled(popBackStack)
+        }
     }
 }
