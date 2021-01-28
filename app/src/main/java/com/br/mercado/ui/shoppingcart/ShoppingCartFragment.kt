@@ -98,7 +98,8 @@ class ShoppingCartFragment : BaseFragment() {
 
         RecyclerViewShoppingCart.layoutManager = LinearLayoutManager(this.context)
         RecyclerViewShoppingCart.adapter = this.adapter
-        val itemTouchHelper = ItemTouchHelper(CartItemTouchHelperCallback { position ->
+        val itemTouchHelper = ItemTouchHelper(
+            CartItemTouchHelperCallback(this.requireContext()){ position ->
             // Remove
             viewModel.deleteItemCart(adapter.getItemId(position))
             refresh()
